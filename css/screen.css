@@ -75,7 +75,7 @@
     --global-toggle-focus-borderColor: #81ADF0;
     --global-toggle-focus-boxShadow: 0 0 0 3px #3385FF20;
     --global-toggle-margin: 8px;
-    --global-toggle-list-border: 1px solid #E2E3E7;
+    --global-toggle-list-borderColor: #E2E3E7;
     --global-page-color: var(--global-color-neutral-xxxx-dark);
     --global-page-backgroundColor: var(--global-color-neutral-xxxx-light);
 }
@@ -810,8 +810,8 @@ input::placeholder {
     width: 48px;
     height: 24px;
     border-radius: 45px;
-    background-color: var(--global-toggle-backgroundColor);
-    border: 1px solid var(--global-toggle-borderColor);
+    background-color: var(--toggle-backgroundColor, var(--global-toggle-backgroundColor));
+    border: 1px solid var(--toggle-borderColor, var(--global-toggle-borderColor));
     transition: all var(--global-transitionTiming-alpha);
     margin-right: var(--global-toggle-margin);
 }
@@ -821,7 +821,7 @@ input::placeholder {
     width: 22px;
     height: 21.9px;
     border-radius: 45px;
-    background-color: #FFF;
+    background-color: var(--toggle-button-backgroundColor, #FFF);
     box-shadow: 0 1px 3px 1px #00000016;
     display: block;
     transition: all var(--global-transitionTiming-alpha);
@@ -845,7 +845,7 @@ input::placeholder {
 .c-toggle-list__item+.c-toggle-list__item {
     margin-top: 12px;
     padding-top: 12px;
-    border-top: var(--global-toggle-list-border);
+    border-top: 1px solid var(--toggle-list-borderColor, var(--global-toggle-list-borderColor));
 }
 
 .c-custom-toggle--inverted {
@@ -857,6 +857,20 @@ input::placeholder {
 
 .c-custom-toggle--inverted .c-custom-toggle__fake-input {
     margin-right: 0;
+}
+
+@media(prefers-color-scheme: dark) {
+    .c-custom-toggle {
+        --toggle-button-backgroundColor: var(--global-color-neutral-xxx-dark);
+        --toggle-backgroundColor: var(--global-color-neutral-xxxx-dark);
+        --toggle-borderColor: var(--global-color-neutral-xxxx-dark);
+    }
+    .c-option--hidden:checked+.c-custom-toggle {
+        --toggle-button-backgroundColor: var(--global-color-neutral-xxxx-dark);
+    }
+    .c-toggle-list__item {
+        --toggle-list-borderColor: var(--global-color-neutral-xxxx-dark);
+    }
 }
 
 .c-custom-select {
