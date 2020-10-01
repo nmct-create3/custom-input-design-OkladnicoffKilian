@@ -612,7 +612,13 @@ input::placeholder {
 
 .c-card__footer {
     text-align: center;
-    border-top: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
+    border-top: var(--global-borderWidth) solid var(--border-color, var(--global-color-neutral-xxx-light));
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-card {
+        --border-color: var(--global-color-neutral-xxxx-dark);
+    }
 }
 
 .c-card__title {
@@ -681,7 +687,7 @@ input::placeholder {
 }
 
 .c-input:hover {
-    border-color: var(--global-input-hover-borderColor);
+    border-color: var(--input-hover-borderColor, var(--global-input-hover-borderColor));
 }
 
 .c-input:focus,
@@ -708,6 +714,7 @@ input::placeholder {
         --input--fill: var(--global-color-neutral-xxxx-dark);
         --input-border--fill: var(--global-color-neutral-xxxx-dark);
         --input-box-shadow: 0 0 0 3px var(--global-color-alpha-transparent);
+        --input-hover-borderColor: var(--global-color-alpha-dark);
         color: white;
     }
 }
